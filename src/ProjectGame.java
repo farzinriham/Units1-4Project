@@ -11,11 +11,15 @@ public class ProjectGame {
     public ProjectGame (String playerName, int playerRound) {
         this.playerName = playerName;
         this.playerRound = playerRound;
-        this.playerHealth = 100;
+        this.playerHealth = 0;
     }
 
     public void setPlayerHealth (int health) {
         playerHealth = health;
+    }
+
+    public void setPlayerHealth () {
+        playerHealth = 100;
     }
 
     public void setPlayerName (String name) {

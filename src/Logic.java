@@ -20,6 +20,7 @@ public class Logic {
                 System.out.print("Enter the number of rounds: ");
                 int rounds = scan.nextInt();
                 game.setPlayerRound(rounds);
+                game.setPlayerHealth();
                 System.out.println(game.getInfo());
                 System.out.print("Do you confirm this information? ");
                 scan.nextLine();
