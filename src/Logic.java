@@ -45,23 +45,28 @@ public class Logic {
                     } else if (userMove == 1) {
                         int dmg = game.playerAttack();
                         monsterHealth -= dmg;
-                        System.out.print("Successfully attacked Monster with " + dmg + " damage! Monster is now at " + monsterHealth + "health!");
+                        System.out.println("Successfully attacked Monster with " + dmg + " damage! Monster is now at " + monsterHealth + " health!");
                     }
-                    System.out.print("Monster makes a move!");
+                    System.out.println("Monster makes a move!");
                     proceed = (int) ((Math.random() * 3) + 1);
                     if (proceed == 3) {
                         System.out.println("Monster missed!");
                     } else {
                         int dmg = game.monsterAttack();
                         currentHealth -= dmg;
-                        System.out.print("Monster attacked with " + dmg + "damage! You are now at " + currentHealth + "heath!");
+                        System.out.println("Monster attacked with " + dmg + " damage! You are now at " + currentHealth + " heath!");
                         if (userMove == 2) {
                             currentHealth += (dmg/2);
-                            System.out.print("But you shielded yourself, half health lost returned! You are now at " + currentHealth + "heath!");
+                            int bombChance = (int) ((Math.random() * 4) + 1);
+                            if (bombChance == 1) {
+                                monsterHealth -= 10;
+                                System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
+                            }
+                            System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
                         }
                     }
-                    System.out.println("Your Current Health:" + currentHealth);
-                    System.out.println("Monster's Current Health:" + monsterHealth);
+                    System.out.println("Your Current Health: " + currentHealth);
+                    System.out.println("Monster's Current Health: " + monsterHealth);
                 }
             }
             //custom mode is here
