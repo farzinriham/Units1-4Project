@@ -2,16 +2,19 @@ public class ProjectGame {
     private String playerName;
     private int playerRound;
     private double playerHealth;
+    private int monsterHealth;
     public ProjectGame (String playerName, int playerRound, double playerHealth) {
         this.playerName = playerName;
         this.playerRound = playerRound;
         this.playerHealth = playerHealth;
+        this.monsterHealth = 100;
     }
 
     public ProjectGame (String playerName, int playerRound) {
         this.playerName = playerName;
         this.playerRound = playerRound;
         this.playerHealth = 0;
+        this.monsterHealth = 100;
     }
 
     public void setPlayerHealth (int health) {
@@ -42,5 +45,17 @@ public class ProjectGame {
         return playerHealth;
     }
 
+    public int getMonsterHealth() {
+        return monsterHealth;
+    }
 
+    public int playerAttack () {
+        int attackAmount = (int) ((Math.random() * 10) + 1); // range from 1 to 10
+        return attackAmount;
+    }
+
+    public int monsterAttack () {
+        int attackAmount = (int) ((Math.random() * 10) + 1); // range from 1 to 10
+        return attackAmount;
+    }
 }

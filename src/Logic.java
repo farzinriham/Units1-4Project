@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class Logic {
-    private int monsterHealth;
-    public Logic(int monsterHealth) {
-        this.monsterHealth = monsterHealth;
+    public Logic () {
     }
 
     public void start() {
@@ -35,12 +33,38 @@ public class Logic {
             System.out.println("Your people select you as their hero, to help save this town.");
             System.out.println("Will you liberate them with your sword or fall to defeat? Time to find out.");
             for (int i = 1; i <= game.getRound(); i++) {
-                System.out.println("A monster approaches!");
+                System.out.println("A monster approaches with a health of 100!");
                 int currentHealth = (int) game.getPlayerHealth();
+                int monsterHealth = game.getMonsterHealth();
                 while (currentHealth > 0 && monsterHealth > 0) {
-
+                    System.out.print("Attack or shield? 1 for attack, 2 for shield.");
+                    int userMove = scan.nextInt();
+                    int proceed = (int) ((Math.random() * 3) + 1);
+                    if (proceed == 3) {
+                        System.out.println("You missed! Monster's turn!");
+                    } else if (userMove == 1) {
+                        int dmg = game.playerAttack();
+                        monsterHealth -= dmg;
+                        System.out.print("Successfully attacked Monster with " + dmg + " damage! Monster is now at " + monsterHealth + "health!");
+                    }
+                    System.out.print("Monster makes a move!");
+                    proceed = (int) ((Math.random() * 3) + 1);
+                    if (proceed == 3) {
+                        System.out.println("Monster missed!");
+                    } else {
+                        int dmg = game.monsterAttack();
+                        currentHealth -= dmg;
+                        System.out.print("Monster attacked with " + dmg + "damage! You are now at " + currentHealth + "heath!");
+                        if (userMove == 2) {
+                            currentHealth += (dmg/2);
+                            System.out.print("But you shielded yourself, half health lost returned! You are now at " + currentHealth + "heath!");
+                        }
+                    }
+                    System.out.println("Your Current Health:" + currentHealth);
+                    System.out.println("Monster's Current Health:" + monsterHealth);
                 }
             }
+            //custom mode is here
         } else {
             ProjectGame game = new ProjectGame("", 0, 100);
             while (userConfirm.equals("no") || userConfirm.equals("No") || userConfirm.equals("No.") || userConfirm.equals("no.")) {
