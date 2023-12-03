@@ -60,7 +60,7 @@ public class Logic {
                     System.out.print("Attack or shield? 1 for attack, 2 for shield. ");
                     int userMove = scan.nextInt();
                     int proceed = (int) ((Math.random() * 3) + 1);
-                    if (proceed == 3) {
+                    if (proceed == 3 && userMove == 1) {
                         System.out.println("You missed! Monster's turn!");
                     } else if (userMove == 1) {
                         int dmg = game.playerAttack();
@@ -90,7 +90,7 @@ public class Logic {
                                     monsterHealth -= 10;
                                     System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
                                 }
-                                System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
+                                System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " health!");
                             }
                         }
                     }
@@ -99,7 +99,7 @@ public class Logic {
                     monsterHealth = bigLandMineMonsterChance(monsterHealth);
                     if (userMove == 2 && currentHealth != initialHealth) {
                         currentHealth += 10;
-                        System.out.println("But you sheilded yourself! 10 health returned!");
+                        System.out.println("But you shielded yourself, so the bomb you stepped on hurts less! 10 health returned!");
                     }
                     System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
                     System.out.println("Your Current Health: " + currentHealth);
@@ -171,7 +171,7 @@ public class Logic {
                     System.out.print("Attack or shield? 1 for attack, 2 for shield. ");
                     int userMove = scan.nextInt();
                     int proceed = (int) ((Math.random() * 3) + 1);
-                    if (proceed == 3) {
+                    if (proceed == 3 && userMove == 1) {
                         System.out.println("You missed! Monster's turn!");
                     } else if (userMove == 1) {
                         int dmg = game.playerAttack();
@@ -201,7 +201,7 @@ public class Logic {
                                     monsterHealth -= 10;
                                     System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
                                 }
-                                System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
+                                System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " health!");
                             }
                         }
                     }
@@ -210,7 +210,7 @@ public class Logic {
                     monsterHealth = bigLandMineMonsterChance(monsterHealth);
                     if (userMove == 2 && currentHealth != initialHealth) {
                         currentHealth += 10;
-                        System.out.println("But you sheilded yourself! 10 health returned!");
+                        System.out.println("But you shielded yourself, so the bomb you stepped on hurts less! 10 health returned!");
                     }
                     System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
                     System.out.println("Your Current Health: " + currentHealth);

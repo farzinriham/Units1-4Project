@@ -68,7 +68,7 @@ public class ProjectGame {
             System.out.println("You collected an attack power up!");
             powerUpDmg = (int) ((Math.random() * 5) + 11);
         }
-        int specialAttack = (int) ((Math.random() * 7) + 1);
+        int specialAttack = (int) ((Math.random() * 5) + 1);
         if (specialAttack == 1) {
             if (element.equals("Light")) {
                 attackAmount = 25;
