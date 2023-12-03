@@ -66,16 +66,16 @@ public class ProjectGame {
         int powerUpDmg = 0;
         if (powerUp == 1) {
             System.out.println("You collected an attack power up!");
-            powerUpDmg = (int) ((Math.random() * 15) + 11);
+            powerUpDmg = (int) ((Math.random() * 5) + 11);
         }
         int specialAttack = (int) ((Math.random() * 7) + 1);
         if (specialAttack == 1) {
             if (element.equals("Light")) {
                 attackAmount = 25;
-                System.out.println("SUN RAY ACTIVATED! Your Sun Sword charged up and fired a beam of 20 damage right at the beast!");
+                System.out.println("SUN RAY ACTIVATED! Your Sun Sword charged up and fired a beam of 20 damage right at the beast, along with your additional previous attack!");
             } if (element.equals("Dark")) {
                 attackAmount = 25;
-                System.out.println("CRESCENT BEAM ACTIVATED! Your Moon spear charged up and fired a beam of 20 damage right at the beast.");
+                System.out.println("CRESCENT BEAM ACTIVATED! Your Moon spear charged up and fired a beam of 20 damage right at the beast, along with your additional previous attack!");
             }
         }
         return attackAmount + powerUpDmg;
@@ -86,15 +86,15 @@ public class ProjectGame {
         int powerUp = (int) ((Math.random() * 5) + 1);
         if (powerUp == 1) {
             System.out.println("The monster gained attack momentum!");
-            attackAmount = (int) ((Math.random() * 25) + 16);
+            attackAmount = (int) ((Math.random() * 10) + 16);
         }
         int uhOh = (int) ((Math.random() * 15) + 1);
         if (uhOh == 1) {
-            int wholeNum = ((int) ((Math.random() * 8) + 6));
+            int wholeNum = ((int) ((Math.random() * 3) + 6));
             attackAmount = (int) Math.pow(wholeNum, 2);
             System.out.println("What's this!......");
             System.out.println("MONSTER CHARGED A HUGE BLOW!");
-            System.out.println("YIKES! YOU LOSE " + attackAmount + "HEALTH!");
+            System.out.println("YIKES! YOU LOSE " + attackAmount + " HEALTH!");
         }
         return attackAmount;
     }

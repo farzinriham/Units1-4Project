@@ -28,7 +28,7 @@ public class Logic {
                 userConfirm = scan.nextLine();
             }
             System.out.println("Lastly, there are two elements to pick from: Light, and Dark.");
-            System.out.print("Press 1 to select Light, or 2 to select Dark (this will not affect your power or give you any quirks, it's just customization) ");
+            System.out.print("Press 1 to select Light, or 2 to select Dark (this will not affect your power or give you any quirks, it's just customization): ");
             int input = scan.nextInt();
             game.elementSelect("Light, Dark", input);
             System.out.println("Your element has been set to " + game.getElement() + ".");
@@ -68,35 +68,39 @@ public class Logic {
                         System.out.println("Successfully attacked Monster with " + dmg + " damage! Monster is now at " + monsterHealth + " health!");
                     }
                     if (monsterHealth > 0) {
-
-                    }
-                    System.out.println("-");
-                    System.out.println("Monster makes a move!");
-                    System.out.println("-");
-                    proceed = (int) ((Math.random() * 3) + 1);
-                    if (proceed == 3) {
-                        System.out.println("Monster missed!");
-                    } else {
-                        int dmg = game.monsterAttack();
-                        currentHealth -= dmg;
-                        System.out.println("Monster attacked with " + dmg + " damage! You are now at " + currentHealth + " heath!");
-                        if (userMove == 2) {
-                            currentHealth += (dmg/2);
-                            int recoilChance = (int) ((Math.random() * 3) + 1);
-                            if (recoilChance == 1) {
-                                monsterHealth -= 5;
-                                System.out.println("When you shielded, Monster faced 5 recoil damage and is now at " + monsterHealth + " health");
+                        System.out.println("-");
+                        System.out.println("Monster makes a move!");
+                        System.out.println("-");
+                        proceed = (int) ((Math.random() * 3) + 1);
+                        if (proceed == 3) {
+                            System.out.println("Monster missed!");
+                        } else {
+                            int dmg = game.monsterAttack();
+                            currentHealth -= dmg;
+                            System.out.println("Monster attacked with " + dmg + " damage! You are now at " + currentHealth + " health!");
+                            if (userMove == 2) {
+                                currentHealth += (dmg / 2);
+                                int recoilChance = (int) ((Math.random() * 3) + 1);
+                                if (recoilChance == 1) {
+                                    monsterHealth -= 5;
+                                    System.out.println("When you shielded, Monster faced 5 recoil damage and is now at " + monsterHealth + " health");
+                                }
+                                int bombChance = (int) ((Math.random() * 4) + 1);
+                                if (bombChance == 1) {
+                                    monsterHealth -= 10;
+                                    System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
+                                }
+                                System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
                             }
-                            int bombChance = (int) ((Math.random() * 4) + 1);
-                            if (bombChance == 1) {
-                                monsterHealth -= 10;
-                                System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
-                            }
-                            System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
                         }
                     }
+                    int initialHealth = currentHealth;
                     currentHealth = game.bigLandMineChance(currentHealth);
                     monsterHealth = bigLandMineMonsterChance(monsterHealth);
+                    if (userMove == 2 && currentHealth != initialHealth) {
+                        currentHealth += 10;
+                        System.out.println("But you sheilded yourself! 10 health returned!");
+                    }
                     System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
                     System.out.println("Your Current Health: " + currentHealth);
                     System.out.println("Monster's Current Health: " + monsterHealth);
@@ -116,7 +120,8 @@ public class Logic {
             if (winCount == 0) {
                 System.out.println("Haha, skill issue, loser. I'm just joking! Better luck next time! :D");
             }
-        } else { //custom mode is here
+            //custom mode is here
+        } else {
             ProjectGame game = new ProjectGame("", 0, 100);
             while (userConfirm.equals("no") || userConfirm.equals("No") || userConfirm.equals("No.") || userConfirm.equals("no.")) {
                 System.out.print("Please enter your name: ");
@@ -133,11 +138,17 @@ public class Logic {
                 scan.nextLine();
                 userConfirm = scan.nextLine();
             }
+            System.out.println("Lastly, there are two elements to pick from: Light, and Dark.");
+            System.out.print("Press 1 to select Light, or 2 to select Dark (this will not affect your power or give you any quirks, it's just customization): ");
+            int input = scan.nextInt();
+            game.elementSelect("Light, Dark", input);
+            System.out.println("Your element has been set to " + game.getElement() + ".");
             System.out.println("Great! Starting game....");
             System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~* New Game *~*~*~~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
+            // game logic starts here
             if (game.getElement().equals("Light")) {
                 System.out.println("Rebellious beasts from the Dark Realm roam your hometown, terrorizing your family, friends, and people.");
-                System.out.println("The Light Nation needs the help of an outstanding, brave citizen to yield the sword of Sun and eradicate these foul beasts");
+                System.out.println("The Light Nation needs the help of an outstanding, brave citizen to yield the sword of Sun and eradicate these foul beasts.");
                 System.out.println("They select you, " + game.getPlayerName() + ", to be that courageous soul.");
                 System.out.println("So, do you have what it takes to liberate your land with nothing but your sword, shield, and wit?");
                 System.out.println("Or will you succumb to defeat?");
@@ -167,45 +178,52 @@ public class Logic {
                         monsterHealth -= dmg;
                         System.out.println("Successfully attacked Monster with " + dmg + " damage! Monster is now at " + monsterHealth + " health!");
                     }
-                    System.out.println("-");
-                    System.out.println("Monster makes a move!");
-                    System.out.println("-");
-                    proceed = (int) ((Math.random() * 3) + 1);
-                    if (proceed == 3) {
-                        System.out.println("Monster missed!");
-                    } else {
-                        int dmg = game.monsterAttack();
-                        currentHealth -= dmg;
-                        System.out.println("Monster attacked with " + dmg + " damage! You are now at " + currentHealth + " heath!");
-                        if (userMove == 2) {
-                            currentHealth += (dmg/2);
-                            int recoilChance = (int) ((Math.random() * 3) + 1);
-                            if (recoilChance == 1) {
-                                monsterHealth -= 5;
-                                System.out.println("When you shielded, Monster faced 5 recoil damage and is now at " + monsterHealth + " health");
+                    if (monsterHealth > 0) {
+                        System.out.println("-");
+                        System.out.println("Monster makes a move!");
+                        System.out.println("-");
+                        proceed = (int) ((Math.random() * 3) + 1);
+                        if (proceed == 3) {
+                            System.out.println("Monster missed!");
+                        } else {
+                            int dmg = game.monsterAttack();
+                            currentHealth -= dmg;
+                            System.out.println("Monster attacked with " + dmg + " damage! You are now at " + currentHealth + " health!");
+                            if (userMove == 2) {
+                                currentHealth += (dmg / 2);
+                                int recoilChance = (int) ((Math.random() * 3) + 1);
+                                if (recoilChance == 1) {
+                                    monsterHealth -= 5;
+                                    System.out.println("When you shielded, Monster faced 5 recoil damage and is now at " + monsterHealth + " health");
+                                }
+                                int bombChance = (int) ((Math.random() * 4) + 1);
+                                if (bombChance == 1) {
+                                    monsterHealth -= 10;
+                                    System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
+                                }
+                                System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
                             }
-                            int bombChance = (int) ((Math.random() * 4) + 1);
-                            if (bombChance == 1) {
-                                monsterHealth -= 10;
-                                System.out.println("Yikes! Monster stepped on a landmine! Monster faces 10 damage and is now at " + monsterHealth + " health");
-                            }
-                            System.out.println("You shielded yourself, so half health that was lost is now returned! You are now at " + currentHealth + " heath!");
                         }
                     }
+                    int initialHealth = currentHealth;
                     currentHealth = game.bigLandMineChance(currentHealth);
                     monsterHealth = bigLandMineMonsterChance(monsterHealth);
+                    if (userMove == 2 && currentHealth != initialHealth) {
+                        currentHealth += 10;
+                        System.out.println("But you sheilded yourself! 10 health returned!");
+                    }
                     System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
                     System.out.println("Your Current Health: " + currentHealth);
                     System.out.println("Monster's Current Health: " + monsterHealth);
                     System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
                 }
-                if (monsterHealth < currentHealth) {
+                if (monsterHealth <= 0) {
                     winCount++;
                     System.out.println("GAME OVER! The monster was successfully slain. You win this round!");
-                } else if (currentHealth < monsterHealth) {
+                } else if (currentHealth <= 0) {
                     System.out.println("GAME OVER! You died this round!");
                 } else {
-                    System.out.println("You both died! Nobody wins! (dang yall suck)");
+                    System.out.println("You both died! Nobody wins!");
                 }
             }
             System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ Final Results ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
