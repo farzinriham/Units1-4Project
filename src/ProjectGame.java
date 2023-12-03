@@ -8,8 +8,14 @@ public class ProjectGame {
         this.playerHealth = playerHealth;
     }
 
-    public void setPlayerHealth () {
-        playerHealth = 100;
+    public ProjectGame (String playerName, int playerRound) {
+        this.playerName = playerName;
+        this.playerRound = playerRound;
+        this.playerHealth = 100;
+    }
+
+    public void setPlayerHealth (int health) {
+        playerHealth = health;
     }
 
     public void setPlayerName (String name) {
@@ -21,7 +27,7 @@ public class ProjectGame {
     }
 
     public String getInfo () {
-        return "Player Name: " + playerName + "\nPlayer Health: " + playerHealth + "\nCurrent Round: " + playerRound;
+        return "Player Name: " + playerName + "\nPlayer Health: " + playerHealth + "\nSelected Number of Rounds: " + playerRound;
     }
 
     private int getRound () {
