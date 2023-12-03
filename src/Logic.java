@@ -28,11 +28,13 @@ public class Logic {
                 userConfirm = scan.nextLine();
             }
             System.out.println("Great! Starting game....");
+            System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             // game logic starts here
             System.out.println("Beasts roam your hometown, terrorizing your family, friends, and people.");
             System.out.println("Your people select you as their hero, to help save this town.");
             System.out.println("Will you liberate them with your sword or fall to defeat? Time to find out.");
             for (int i = 1; i <= game.getRound(); i++) {
+                System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ New Game ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
                 System.out.println("A monster approaches with a health of 100!");
                 int currentHealth = (int) game.getPlayerHealth();
                 int monsterHealth = game.getMonsterHealth();
