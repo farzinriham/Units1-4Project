@@ -1,7 +1,10 @@
 import java.util.Scanner;
 
 public class Logic {
-    public Logic() { }
+    private int monsterHealth;
+    public Logic(int monsterHealth) {
+        this.monsterHealth = monsterHealth;
+    }
 
     public void start() {
         System.out.println("Welcome! Before we get started, there's a custom mode where you can enter your own health, and there's a normal mode.");
@@ -12,8 +15,8 @@ public class Logic {
         System.out.print("Would you like to play custom or normal?");
         userMode = scan.nextLine();
         if (userMode.equals("normal")) {
+            ProjectGame game = new ProjectGame("", 0);
             while (userConfirm.equals("no") || userConfirm.equals("No") || userConfirm.equals("No.") || userConfirm.equals("no.")) {
-                ProjectGame game = new ProjectGame("", 0);
                 System.out.print("Please enter your name: ");
                 String name = scan.nextLine();
                 game.setPlayerName(name);
@@ -27,9 +30,20 @@ public class Logic {
                 userConfirm = scan.nextLine();
             }
             System.out.println("Great! Starting game....");
+            // game logic starts here
+            System.out.println("Beasts roam your hometown, terrorizing your family, friends, and people.");
+            System.out.println("Your people select you as their hero, to help save this town.");
+            System.out.println("Will you liberate them with your sword or fall to defeat? Time to find out.");
+            for (int i = 1; i <= game.getRound(); i++) {
+                System.out.println("A monster approaches!");
+                int currentHealth = (int) game.getPlayerHealth();
+                while (currentHealth > 0 && monsterHealth > 0) {
+
+                }
+            }
         } else {
+            ProjectGame game = new ProjectGame("", 0, 100);
             while (userConfirm.equals("no") || userConfirm.equals("No") || userConfirm.equals("No.") || userConfirm.equals("no.")) {
-                ProjectGame game = new ProjectGame("", 0, 100);
                 System.out.print("Please enter your name: ");
                 String name = scan.nextLine();
                 game.setPlayerName(name);

@@ -34,8 +34,12 @@ public class ProjectGame {
         return "Player Name: " + playerName + "\nPlayer Health: " + playerHealth + "\nSelected Number of Rounds: " + playerRound;
     }
 
-    private int getRound () {
+    public int getRound () {
         return playerRound;
+    }
+
+    public double getPlayerHealth () {
+        return playerHealth;
     }
 
 
