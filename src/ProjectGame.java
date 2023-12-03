@@ -62,11 +62,40 @@ public class ProjectGame {
 
     public int playerAttack () {
         int attackAmount = (int) ((Math.random() * 10) + 1); // range from 1 to 10
-        return attackAmount;
+        int powerUp = (int) ((Math.random() * 3) + 1);
+        int powerUpDmg = 0;
+        if (powerUp == 1) {
+            System.out.println("You collected an attack power up!");
+            powerUpDmg = (int) ((Math.random() * 15) + 11);
+        }
+        int specialAttack = (int) ((Math.random() * 7) + 1);
+        if (specialAttack == 1) {
+            if (element.equals("Light")) {
+                attackAmount = 25;
+                System.out.println("SUN RAY ACTIVATED! Your Sun Sword charged up and fired a beam of 20 damage right at the beast!");
+            } if (element.equals("Dark")) {
+                attackAmount = 25;
+                System.out.println("CRESCENT BEAM ACTIVATED! Your Moon spear charged up and fired a beam of 20 damage right at the beast.");
+            }
+        }
+        return attackAmount + powerUpDmg;
     }
 
     public int monsterAttack () {
-        int attackAmount = (int) ((Math.random() * 10) + 1); // range from 1 to 10
+        int attackAmount = (int) ((Math.random() * 15) + 1); // range from 1 to 10
+        int powerUp = (int) ((Math.random() * 5) + 1);
+        if (powerUp == 1) {
+            System.out.println("The monster gained attack momentum!");
+            attackAmount = (int) ((Math.random() * 25) + 16);
+        }
+        int uhOh = (int) ((Math.random() * 15) + 1);
+        if (uhOh == 1) {
+            int wholeNum = ((int) ((Math.random() * 8) + 6));
+            attackAmount = (int) Math.pow(wholeNum, 2);
+            System.out.println("What's this!......");
+            System.out.println("MONSTER CHARGED A HUGE BLOW!");
+            System.out.println("YIKES! YOU LOSE " + attackAmount + "HEALTH!");
+        }
         return attackAmount;
     }
 
